@@ -11,7 +11,7 @@ docker build -t ghcr.io/tsumori-io/luzid-validator:latest .
 ## Pull container
 
 ```sh
-docker pull ghcr.io/tsumori-io/luzid-validator:latest
+docker pull --platform=linux/amd64 ghcr.io/tsumori-io/luzid-validator:latest
 ```
 
 ## Run container
