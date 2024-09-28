@@ -8,6 +8,13 @@ on:
         required: true
         default: 'v0.1.2'
 
+permissions:
+  contents: read
+  packages: write
+
+env:
+  LUZID_RELEASE: ${{ github.event.inputs.tag }}
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -38,8 +45,8 @@ jobs:
         context: .
         push: true
         tags: |
-          ghcr.io/${{ github.repository }}:${{ github.event.inputs.tag }}
+          ghcr.io/${{ github.repository }}:${{ env.LUZID_RELEASE }}
           ghcr.io/${{ github.repository }}:latest
         platforms: linux/amd64
         build-args: |
-          LUZID_RELEASE=${{ github.event.inputs.tag }}
+          LUZID_RELEASE=${{ env.LUZID_RELEASE }}
